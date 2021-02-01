@@ -1,0 +1,23 @@
+{
+  "name": "barcode-scanner",
+  "version": "1.0.0",
+  "description": "QuaggaJS Barcode Scanner demo with ReactJs",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "quagga": "0.12.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-scripts": "4.0.1"
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+}
