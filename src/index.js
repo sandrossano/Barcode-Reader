@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+//import Spinner from "react-native-loading-spinner-overlay";
 //import Scanner from "./Scanner";
 //import Result from "./Result";
 import Result from "./components/Result";
 import Scanner from "./components/Scanner";
 import css from "./styles.module.css";
 import Quagga from "quagga";
+//import { RingLoader, BounceLoader, HashLoader } from "react-spinners";
+import ButtonLoader from "./ButtonLoader/index";
 
 class App extends Component {
   state = {
     scanning: false,
+    loading: true,
     results: []
   };
 
@@ -34,6 +38,10 @@ class App extends Component {
   handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
 
+    //loaderHandler.showLoader("Loading"); // Show indicator with message 'Loading'
+    //loaderHandler.showLoader("Loading More"); // Show indicator with message 'Loading More'
+
+    //loaderHandler.hideLoader();  // Hide the loader
     var tmpImgURL = URL.createObjectURL(files[0]);
 
     Quagga.decodeSingle(
@@ -80,6 +88,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <ButtonLoader />
         <button onClick={this._scan} className={css.button}>
           {this.state.scanning ? "Stop" : "Start"}
         </button>
