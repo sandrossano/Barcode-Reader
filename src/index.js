@@ -87,7 +87,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ marginTop: "60px", paddingTop: "20px" }}>
         <ButtonLoader />
         <button onClick={this._scan} className={css.button}>
           {this.state.scanning ? "Stop" : "Start"}

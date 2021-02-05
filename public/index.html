@@ -13,15 +13,31 @@
         min-height: 100vh;
         overflow: auto;
       }
+      .card {
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 2rem;
+        padding-bottom: 20px;
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.76);
+        /*transition: 0.3s;*/
+        background-color: rgba(81, 121, 173, 0.534);
+      }
+
+      /* On mouse-over, add a deeper shadow */
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+
       .page2BgImg {
-        background-image: url("./sfondoBig.png");
+        background-image: url("./sfondoBig-min.png");
 
         background-size: 100% 100% !important;
       }
 
       @media only screen and (max-device-width: 650px) {
         .page2BgImg {
-          background-image: url("./sfondo.png") !important;
+          background-image: url("./sfondo-min.png") !important;
 
           background-size: 100% 100% !important;
         }
@@ -56,7 +72,7 @@
       You need to enable JavaScript to run this app.
     </noscript>
   -->
-    <div id="root"></div>
+    <div align="center" class="card" id="root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

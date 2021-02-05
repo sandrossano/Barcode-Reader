@@ -17,9 +17,11 @@
 spinnerTextStyle {
   color: "#FFF";
 }
-
+padding {
+  padding-bottom: 20px;
+}
 .button {
-  background-color: #008cba; /* Green */
+  background-color: #8a2bba; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;

@@ -20,7 +20,7 @@ export default class ButtonLoader extends Component {
     const { loading } = this.state;
 
     return (
-      <div style={{ marginTop: "60px" }}>
+      <div>
         <button
           className={css.button}
           onClick={this.fetchData}
