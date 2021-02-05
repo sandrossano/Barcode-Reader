@@ -104,6 +104,7 @@ class App extends Component {
           accept="image/*"
         />
         <br />
+        <br />
         <label>Barcode: </label>
         <input type="text" id="text-input" />
 

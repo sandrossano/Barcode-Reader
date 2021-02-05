@@ -10,10 +10,29 @@ export default class ButtonLoader extends Component {
   fetchData = () => {
     this.setState({ loading: true, data: "Loading" });
 
+    var that = this;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        that.setState({ loading: false, data: this.responseText });
+      } else {
+        if (this.readyState === 4 && this.status !== 200)
+          that.setState({ loading: false });
+      }
+    };
+    xhttp.open(
+      "GET",
+      "https://services.odata.org/V4/(S(nav3gc15n4kgx5riao0euln0))/TripPinServiceRW/Airports('KSFO')/Name/$value",
+      true
+    );
+    xhttp.send();
+    /*
+      setTimeout(() => {
+    }, 500);*/
     //Faking API call here
-    setTimeout(() => {
+    /*setTimeout(() => {
       this.setState({ loading: false, data: "Test" });
-    }, 2000);
+    }, 15000);*/
   };
 
   render() {
