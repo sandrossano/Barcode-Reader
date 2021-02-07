@@ -3,7 +3,7 @@
     "type": "LiveStream",
     "constraints": {
       "width": { "min": 600 },
-      "height": { "min": 450 },
+      "height": { "min": 350, "max": 650 },
       "facingMode": "environment",
       "aspectRatio": { "min": 1, "max": 2 }
     }
@@ -29,7 +29,15 @@
         "config": {}
       },
       {
+        "format": "code_39_vin_reader",
+        "config": {}
+      },
+      {
         "format": "code_93_reader",
+        "config": {}
+      },
+      {
+        "format": "codabar_reader",
         "config": {}
       }
     ]

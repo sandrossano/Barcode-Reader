@@ -22,7 +22,13 @@ class Scanner extends Component {
   };
 
   render() {
-    return <div id="interactive" className="viewport" />;
+    return (
+      <div
+        id="interactive"
+        className="viewport"
+        style={{ maxHeight: "650px" }}
+      />
+    );
   }
 }
 export default Scanner;
