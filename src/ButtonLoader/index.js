@@ -9,12 +9,12 @@ export default class ButtonLoader extends Component {
 
   fetchData = () => {
     this.setState({ loading: true, data: "Loading" });
-
     var that = this;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         that.setState({ loading: false, data: this.responseText });
+        App._changeEnabled("enabled");
       } else {
         if (this.readyState === 4 && this.status !== 200)
           that.setState({ loading: false });

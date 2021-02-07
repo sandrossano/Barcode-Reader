@@ -21,6 +21,14 @@ class App extends Component {
     this.setState({ scanning: !this.state.scanning });
   };
 
+  _changeEnabled(value) {
+    if (value === "disabled") {
+      document.getElementById("fieldEn").disabled = true;
+    } else {
+      document.getElementById("fieldEn").disabled = false;
+    }
+  }
+
   _onDetected = (result) => {
     //this.setState({ results: this.state.results.concat([result]) })
     //this.setState({ results: this.state.results.concat([result]) });
@@ -30,6 +38,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this._changeEnabled("disabled");
     document
       .querySelector("#inputId")
       .addEventListener("change", this.handleFileSelect, false);
@@ -47,7 +56,7 @@ class App extends Component {
     Quagga.decodeSingle(
       {
         src: tmpImgURL,
-        numOfWorkers: 0, // Needs to be 0 when used within node
+        numOfWorkers: 2, // Needs to be 0 when used within node
         locate: true,
         inputStream: {
           size: 800 // restrict input-size to be 800px in width (long-side)
@@ -89,32 +98,38 @@ class App extends Component {
     return (
       <div style={{ marginTop: "60px", paddingTop: "20px" }}>
         <ButtonLoader />
-        <button onClick={this._scan} className={css.button}>
-          {this.state.scanning ? "Stop" : "Start"}
-        </button>
-        <ul className="results">
-          {this.state.results.map((result, i) => (
-            <Result key={result.codeResult.code + i} result={result} />
-          ))}
-        </ul>
-        <input
-          id="inputId"
-          className={css.button}
-          type="file"
-          accept="image/*"
-        />
-        <br />
-        <br />
-        <label>Barcode: </label>
-        <input type="text" id="text-input" />
+        <fieldset id="fieldEn" className={css.fieldset}>
+          <button onClick={this._scan} className={css.button}>
+            {this.state.scanning ? "Stop" : "Start"}
+          </button>
+          <ul className="results">
+            {this.state.results.map((result, i) => (
+              <Result key={result.codeResult.code + i} result={result} />
+            ))}
+          </ul>
+          <input
+            id="inputId"
+            className={css.button}
+            type="file"
+            accept="image/*"
+          />
+          <br />
+          <br />
+          <label>Barcode: </label>
+          <input type="text" id="text-input" />
 
-        {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
+          {this.state.scanning ? (
+            <Scanner onDetected={this._onDetected} />
+          ) : null}
+        </fieldset>
       </div>
     );
   }
 }
 
-export default App;
+const app = new App();
+
+export default app;
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);

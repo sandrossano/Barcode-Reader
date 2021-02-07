@@ -2,6 +2,9 @@
   font-family: sans-serif;
   text-align: center;
 }
+.fieldset {
+  border-color: transparent;
+}
 .button {
   background-color: #4caf50;
   border: none;
