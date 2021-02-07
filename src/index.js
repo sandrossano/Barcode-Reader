@@ -118,12 +118,12 @@ class App extends Component {
           <br />
           <label>Barcode: </label>
           <input type="text" id="text-input" />
-          <div>
-            {this.state.scanning ? (
-              <Scanner onDetected={this._onDetected} />
-            ) : null}
-          </div>
         </fieldset>
+        <div>
+          {this.state.scanning ? (
+            <Scanner onDetected={this._onDetected} />
+          ) : null}
+        </div>
       </div>
     );
   }
