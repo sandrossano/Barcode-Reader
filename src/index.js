@@ -109,6 +109,7 @@ class App extends Component {
           </ul>
           <input
             id="inputId"
+            name="file"
             className={css.button}
             type="file"
             accept="image/*"

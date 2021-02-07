@@ -5,6 +5,10 @@
 .fieldset {
   border-color: transparent;
 }
+input[name="file"] {
+  width: 80%;
+  max-width: 300px;
+}
 .button {
   background-color: #4caf50;
   border: none;
@@ -24,7 +28,7 @@ padding {
   padding-bottom: 20px;
 }
 .button {
-  background-color: #8a2bba; /* Green */
+  background-color: #512bba; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
