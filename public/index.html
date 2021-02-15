@@ -8,49 +8,16 @@
     />
 
     <meta name="theme-color" content="#000000" />
-    <style>
-      html,
-      body {
-        min-height: 100vh;
-        overflow: auto;
-      }
-      .card {
-        margin-left: 20px;
-        margin-right: 20px;
-        border-radius: 2rem;
-        padding-bottom: 20px;
-        /* Add shadows to create the "card" effect */
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.76);
-        /*transition: 0.3s;*/
-        background-color: rgba(81, 121, 173, 0.534);
-      }
-
-      /* On mouse-over, add a deeper shadow */
-      .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-      }
-
-      .page2BgImg {
-        background-image: url("./sfondoBig-min.png");
-
-        background-size: 100% 100% !important;
-      }
-
-      @media only screen and (max-device-width: 650px) {
-        .page2BgImg {
-          background-image: url("./sfondo-min.png") !important;
-
-          background-size: 100% 100% !important;
-        }
-      }
-    </style>
+    <link href="./style.min.css" rel="stylesheet" />
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
    
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    -->
+      -->
+    <link rel="shortcut icon" href="emplo.ico" />
+    <link rel="icon" href="emplo.ico" />
+  
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
@@ -64,15 +31,61 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script
+      id="sap-ui-bootstrap"
+      src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+      data-sap-ui-theme="sap_belize"
+      data-sap-ui-libs="sap.m, sap.ui.layout, sap.tnt"
+      data-sap-ui-resourceroots='{"Quickstart": "./"}'
+      data-sap-ui-async="true"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+    <!--<script type="text/javascript" src="../src/index2.js"></script>-->
     <title>React App</title>
   </head>
 
   <body class="page2BgImg">
+    <div class="Bar sapMIBar sapMIBar-CTX sapMBar sapMContent-CTX sapMBar-CTX sapMPageHeader sapMHeader-CTX sapContrastPlus sapMBarTitleAlignAuto">
+        <div class="sapMBarMiddle">
+      <span class="Title">AWS Portal</span>
+        </div>
+      <div class="ButtonBoxR sapMBarRight sapMBarContainer ">
+      <img src="./emplo.ico" height="35px" class="imageEmpl"/>
+      <span class="emplName" style="margin-right: 1rem;">SSII</span>
+      <button id="__button0" data-sap-ui="__button0" aria-label="Disconnetti" title="Disconnetti" class="sapMBtnBase sapMBtn sapUiSmallMarginEnd sapMBarChild"><span id="__button0-inner" class="sapMBtnInner sapMBtnHoverable sapMFocusable sapMBtnIconFirst sapMBtnDefault"><span id="__button0-img" data-sap-ui="__button0-img" role="presentation" aria-hidden="true" data-sap-ui-icon-content="" class="sapUiIcon sapUiIconMirrorInRTL sapMBtnCustomIcon sapMBtnIcon sapMBtnIconLeft" style="font-family: 'SAP\2dicons';"></span></span><span id="__button0-tooltip" class="sapUiInvisibleText">Disconnetti</span></button>
+      </div>
+        </div>
+      </div>
+    </div>
     <!--
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
   -->
+    <script>
+    var logged = sessionStorage.getItem("Logged");
+        usr = sessionStorage.getItem("User");
+
+        var url = new URL(window.location.href);
+        var sParam = url.searchParams.get("US");
+        var sParam2 = url.searchParams.get("TK");
+        var d = new Date();
+        var passhash = CryptoJS.MD5(d.getHours() + d.getMinutes() + "").toString();
+
+        if (passhash === sParam2) {
+          usr = sParam;
+          logged = "X";
+          sessionStorage.setItem("Logged", logged);
+          sessionStorage.setItem("User", usr);
+        }else{
+          logged = "";
+        }
+
+        if (logged !== "X") {
+          window.open("https://portal.awskeytech.com", "_self");
+        }
+    </script>
     <div align="center" class="card" id="root"></div>
     <!--
       This HTML file is a template.
