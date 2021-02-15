@@ -46,14 +46,17 @@
   </head>
 
   <body class="page2BgImg">
+
+   
+
     <div class="Bar sapMIBar sapMIBar-CTX sapMBar sapMContent-CTX sapMBar-CTX sapMPageHeader sapMHeader-CTX sapContrastPlus sapMBarTitleAlignAuto">
         <div class="sapMBarMiddle">
       <span class="Title">AWS Portal</span>
         </div>
       <div class="ButtonBoxR sapMBarRight sapMBarContainer ">
       <img src="./emplo.ico" height="35px" class="imageEmpl"/>
-      <span class="emplName" style="margin-right: 1rem;">SSII</span>
-      <button id="__button0" data-sap-ui="__button0" aria-label="Disconnetti" title="Disconnetti" class="sapMBtnBase sapMBtn sapUiSmallMarginEnd sapMBarChild"><span id="__button0-inner" class="sapMBtnInner sapMBtnHoverable sapMFocusable sapMBtnIconFirst sapMBtnDefault"><span id="__button0-img" data-sap-ui="__button0-img" role="presentation" aria-hidden="true" data-sap-ui-icon-content="" class="sapUiIcon sapUiIconMirrorInRTL sapMBtnCustomIcon sapMBtnIcon sapMBtnIconLeft" style="font-family: 'SAP\2dicons';"></span></span><span id="__button0-tooltip" class="sapUiInvisibleText">Disconnetti</span></button>
+      <span class="emplName" id ="employName" style="margin-right: 1rem;"></span>
+      <button id="__button0" onclick="onLogout" data-sap-ui="__button0" aria-label="Disconnetti" title="Disconnetti" class="sapMBtnBase sapMBtn sapUiSmallMarginEnd sapMBarChild"><span id="__button0-inner" class="sapMBtnInner sapMBtnHoverable sapMFocusable sapMBtnIconFirst sapMBtnDefault"><span id="__button0-img" data-sap-ui="__button0-img" role="presentation" aria-hidden="true" data-sap-ui-icon-content="" class="sapUiIcon sapUiIconMirrorInRTL sapMBtnCustomIcon sapMBtnIcon sapMBtnIconLeft" style="font-family: 'SAP\2dicons';"></span></span><span id="__button0-tooltip" class="sapUiInvisibleText">Disconnetti</span></button>
       </div>
         </div>
       </div>
@@ -63,7 +66,8 @@
       You need to enable JavaScript to run this app.
     </noscript>
   -->
-    <script>
+
+  <script>
     var logged = sessionStorage.getItem("Logged");
         usr = sessionStorage.getItem("User");
 
@@ -85,7 +89,16 @@
         if (logged !== "X") {
           window.open("https://portal.awskeytech.com", "_self");
         }
+        document.getElementById('employName').innerHTML = usr;
     </script>
+
+<script>
+  function onLogout() {
+    sessionStorage.clear();
+        window.open("https://portal.awskeytech.com", "_self");
+  }
+  </script>
+
     <div align="center" class="card" id="root"></div>
     <!--
       This HTML file is a template.
