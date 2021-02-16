@@ -7,6 +7,7 @@ import Result from "./components/Result";
 import Scanner from "./components/Scanner";
 import css from "./styles.module.css";
 import Quagga from "quagga";
+
 //import { RingLoader, BounceLoader, HashLoader } from "react-spinners";
 import ButtonLoader from "./ButtonLoader/index";
 
@@ -15,11 +16,30 @@ const style = {
   justifyContent: "center",
   alignItems: "center"
 };
+const styleLeft = {
+  display: "flex",
+  alignItems: "center"
+};
+///AWS CONFIG
+var path = require("path");
+const AWS = require("aws-sdk");
+const fs = require("fs");
+// Enter copied or downloaded access ID and secret key here
+const ID = "AKIARQNSLORAPDGPDBOG";
+const SECRET = "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";
+// The name of the bucket that you have created
+const BUCKET_NAME = "repodoc";
+const s3 = new AWS.S3({
+  accessKeyId: ID,
+  secretAccessKey: SECRET
+});
+////
 
 class App extends Component {
   state = {
     scanning: false,
     loading: true,
+    allegatiload: false,
     results: []
   };
 
@@ -44,7 +64,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this._changeEnabled("disabled");
+    //this._changeEnabled("disabled");
     document
       .querySelector("#inputId")
       .addEventListener("change", this.handleFileSelect, false);
@@ -100,11 +120,30 @@ class App extends Component {
     );
   }
 
+  _uploadFile = () => {
+    if (document.getElementById("fieldEn").disabled === true) {
+      return;
+    }
+    this._changeEnabled("disabled");
+    if (document.querySelector("#inputIdFile").value === "") {
+      alert("Selezionare una immagine");
+      this._changeEnabled("enabled");
+    }
+
+    var objurl = URL.createObjectURL(
+      document.querySelector("#inputIdFile").files[0]
+    );
+  };
+
   render() {
     return (
-      <div align="center" style={{ marginTop: "10px", paddingTop: "10px" }}>
-        <fieldset id="fieldEn" className={css.fieldset}>
-          <span class={css.TestoTestata}>Inserisci Barcode</span>
+      <div>
+        <div
+          className={css.card}
+          align="center"
+          style={{ marginTop: "10px", paddingTop: "10px" }}
+        >
+          <span className={css.TestoTestata}>Inserisci Barcode</span>
           <br />
           <br />
           <div style={{ marginTop: "5px" }}>
@@ -143,10 +182,62 @@ class App extends Component {
             </div>
             <br />
             <label>Barcode: </label>
-            <input type="text" id="text-input" />
+            <input
+              type="text"
+              id="text-input"
+              style={{ marginTop: "20px", marginBottom: "15px" }}
+            />
           </div>
-        </fieldset>
-        <ButtonLoader />
+
+          <ButtonLoader />
+        </div>
+        <div id="alleg" className={css.card} hidden="hidden">
+          <fieldset id="fieldEn" className={css.fieldset}>
+            <center>
+              <span className={css.TestoTestata}>Allegati:</span>
+
+              <div style={{ marginTop: "5px" }}>
+                <div className={css.card2}>
+                  <p style={styleLeft}>
+                    <img
+                      className={css.ImageLabel}
+                      width="40px"
+                      alt="Icona Fold"
+                      src="folder.ico"
+                    />
+                    <span className={css.LabelFolder} id="listaEl"></span>
+                  </p>
+                  <ul id="item_list"></ul>
+                </div>
+              </div>
+            </center>
+            <div style={{ marginTop: "30px" }}>
+              <center>
+                <p className={css.TestoTestata}>Carica Allegato</p>
+                <input
+                  id="inputIdFile"
+                  name="file"
+                  className={css.button}
+                  type="file"
+                  accept="image/*"
+                />
+                <br />
+                <button
+                  type="submit"
+                  onClick={this._uploadFile}
+                  className={css.ButtonSubmit}
+                >
+                  <img
+                    className={css.ImageUpload}
+                    alt="Icona Upload"
+                    src="upload.ico"
+                    width="70px"
+                  />
+                </button>
+              </center>
+            </div>
+          </fieldset>
+        </div>
       </div>
     );
   }
