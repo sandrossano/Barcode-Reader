@@ -97,3 +97,12 @@ body {
   top: 0px;
   margin-left: 0px !important;
 }
+.HeaderCard {
+  font-family: cursive;
+  padding-left: 40px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: underline;
+  color: firebrick;
+  margin-top: 60px;
+}

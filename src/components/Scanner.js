@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import config from "./config.json";
 import Quagga from "quagga";
+import css from "../styles.module.css";
 
 class Scanner extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class Scanner extends Component {
       <div
         id="interactive"
         className="viewport"
-        style={{ maxHeight: "650px" }}
+        style={{ minHeight: "200px", maxHeight: "650px" }}
       />
     );
   }

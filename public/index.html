@@ -51,7 +51,7 @@
 
     <div class="Bar sapMIBar sapMIBar-CTX sapMBar sapMContent-CTX sapMBar-CTX sapMPageHeader sapMHeader-CTX sapContrastPlus sapMBarTitleAlignAuto">
         <div class="sapMBarMiddle">
-      <span class="Title">AWS Portal</span>
+      <span class="Title">Barcode App</span>
         </div>
       <div class="ButtonBoxR sapMBarRight sapMBarContainer ">
       <img src="./emplo.ico" height="35px" class="imageEmpl"/>
@@ -87,7 +87,8 @@
         }
 
         if (logged !== "X") {
-          window.open("https://portal.awskeytech.com", "_self");
+          //decommentare al rilascio
+          //window.open("https://portal.awskeytech.com", "_self");
         }
         document.getElementById('employName').innerHTML = usr;
     </script>
@@ -98,8 +99,11 @@
         window.open("https://portal.awskeytech.com", "_self");
   }
   </script>
-
-    <div align="center" class="card" id="root"></div>
+    
+    <div class="HeaderCard">
+    <!--<span >Seleziona DDT</span>-->
+    </div>
+    <div class="card" id="root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

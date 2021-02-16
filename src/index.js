@@ -10,6 +10,12 @@ import Quagga from "quagga";
 //import { RingLoader, BounceLoader, HashLoader } from "react-spinners";
 import ButtonLoader from "./ButtonLoader/index";
 
+const style = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center"
+};
+
 class App extends Component {
   state = {
     scanning: false,
@@ -96,34 +102,51 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ marginTop: "60px", paddingTop: "20px" }}>
-        <ButtonLoader />
+      <div align="center" style={{ marginTop: "10px", paddingTop: "10px" }}>
         <fieldset id="fieldEn" className={css.fieldset}>
-          <button onClick={this._scan} className={css.button}>
-            {this.state.scanning ? "Stop" : "Start"}
-          </button>
-          <ul className="results">
-            {this.state.results.map((result, i) => (
-              <Result key={result.codeResult.code + i} result={result} />
-            ))}
-          </ul>
-          <input
-            id="inputId"
-            name="file"
-            className={css.button}
-            type="file"
-            accept="image/*"
-          />
+          <span class={css.TestoTestata}>Inserisci Barcode</span>
           <br />
           <br />
-          <label>Barcode: </label>
-          <input type="text" id="text-input" />
+          <div style={{ marginTop: "5px" }}>
+            <div className={css.card2}>
+              <p style={style}>
+                <span className={css.Label}>Da Fotocamera</span>
+                <img
+                  className={css.ImageLabel}
+                  width="40px"
+                  alt="Icona Cam"
+                  src="fotocam.ico"
+                />
+                <button onClick={this._scan} className={css.button}>
+                  {this.state.scanning ? "Chiudi" : "Apri"}
+                </button>
+              </p>
+              <ul className="results">
+                {this.state.results.map((result, i) => (
+                  <Result key={result.codeResult.code + i} result={result} />
+                ))}
+              </ul>
+              <div align="center">
+                {this.state.scanning ? (
+                  <Scanner onDetected={this._onDetected} />
+                ) : null}
+              </div>
+              <span className={css.Label}>Da Libreria</span>
+              <input
+                id="inputId"
+                name="file"
+                className={css.button}
+                type="file"
+                accept="image/*"
+              />
+              <br />
+            </div>
+            <br />
+            <label>Barcode: </label>
+            <input type="text" id="text-input" />
+          </div>
         </fieldset>
-        <div>
-          {this.state.scanning ? (
-            <Scanner onDetected={this._onDetected} />
-          ) : null}
-        </div>
+        <ButtonLoader />
       </div>
     );
   }
