@@ -10,6 +10,7 @@ import Quagga from "quagga";
 
 //import { RingLoader, BounceLoader, HashLoader } from "react-spinners";
 import ButtonLoader from "./ButtonLoader/index";
+import Loader from "react-loader-spinner";
 
 const style = {
   display: "flex",
@@ -21,9 +22,7 @@ const styleLeft = {
   alignItems: "center"
 };
 ///AWS CONFIG
-var path = require("path");
 const AWS = require("aws-sdk");
-const fs = require("fs");
 // Enter copied or downloaded access ID and secret key here
 const ID = "AKIARQNSLORAPDGPDBOG";
 const SECRET = "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";
@@ -121,19 +120,82 @@ class App extends Component {
   }
 
   _uploadFile = () => {
+    var filename = document.querySelector("#inputIdFile").value.toLowerCase();
+    var that = this;
     if (document.getElementById("fieldEn").disabled === true) {
       return;
     }
+    const menu = document.querySelector("#item_list");
+    //loaderHandler.showLoader("Caricamento in corso"); // Show indicator with message 'Loading More'
     this._changeEnabled("disabled");
-    if (document.querySelector("#inputIdFile").value === "") {
+    if (filename === "") {
       alert("Selezionare una immagine");
       this._changeEnabled("enabled");
+      return;
     }
+    this.setState({ allegatiload: true });
+    var myBucket = "repodoc";
+    var namedoc = filename.split("fakepath\\");
+    var myKey = document.querySelector("#text-input").value + "/" + namedoc[1];
 
-    var objurl = URL.createObjectURL(
-      document.querySelector("#inputIdFile").files[0]
-    );
+    // Bucket names must be unique across all S3 users
+    var reader = new FileReader();
+    //reader.readAsArrayBuffer(document.querySelector("#inputIdFile").files[0]);
+    /*reader.readAsDataURL(
+      document.querySelector("#inputIdFile").files[0],
+      "UTF-8"
+    );*/
+    reader.readAsDataURL(document.querySelector("#inputIdFile").files[0]);
+    reader.onload = function (evt) {
+      //const fileData = new Uint8Array(reader.result);
+      //fileBson = new BSON.Binary(fileData);
+      var b64string = evt.target.result.split(";base64,");
+      var buf = Buffer.from(b64string[1], "base64");
+
+      var params = {
+        Bucket: myBucket,
+        Key: myKey,
+        Body: buf
+      };
+
+      s3.putObject(params, function (err, data) {
+        if (err) {
+          alert("Errore nel caricamento del file");
+          console.log(err);
+          that._changeEnabled("enabled");
+          // loaderHandler.hideLoader(); // Hide the loader
+          that.setState({ allegatiload: false });
+        } else {
+          alert("File caricato con successo");
+          console.log("Successfully uploaded data to repodoc/" + myKey);
+          that._changeEnabled("enabled");
+          // loaderHandler.hideLoader(); // Hide the loader
+          that.setState({ allegatiload: false });
+          menu.appendChild(that.createMenuItem(myKey));
+        }
+      });
+    };
+    reader.onerror = function (evt) {
+      console.log("error reading file");
+      that._changeEnabled("enabled");
+      //loaderHandler.hideLoader(); // Hide the loader
+      that.setState({ allegatiload: false });
+    };
   };
+
+  createMenuItem(name) {
+    let li = document.createElement("li");
+    var a = document.createElement("a");
+
+    a.textContent = name;
+    a.setAttribute(
+      "href",
+      "https://repodoc.s3.eu-west-3.amazonaws.com/" + name
+    );
+    a.setAttribute("target", "_blank");
+    li.appendChild(a);
+    return li;
+  }
 
   render() {
     return (
@@ -183,7 +245,7 @@ class App extends Component {
             <br />
             <label>Barcode: </label>
             <input
-              type="text"
+              type="number"
               id="text-input"
               style={{ marginTop: "20px", marginBottom: "15px" }}
             />
@@ -227,12 +289,21 @@ class App extends Component {
                   onClick={this._uploadFile}
                   className={css.ButtonSubmit}
                 >
-                  <img
-                    className={css.ImageUpload}
-                    alt="Icona Upload"
-                    src="upload.ico"
-                    width="70px"
-                  />
+                  {this.state.allegatiload ? (
+                    <Loader
+                      type="ThreeDots"
+                      color="#2BAD60"
+                      height="100"
+                      width="100"
+                    />
+                  ) : (
+                    <img
+                      className={css.ImageUpload}
+                      alt="Icona Upload"
+                      src="upload.ico"
+                      width="70px"
+                    />
+                  )}
                 </button>
               </center>
             </div>

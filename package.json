@@ -6,11 +6,10 @@
   "main": "src/index.js",
   "dependencies": {
     "aws-sdk": "2.844.0",
-    "fs": "0.0.2",
-    "path": "0.12.7",
     "quagga": "0.12.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-loader-spinner": "4.0.0",
     "react-scripts": "4.0.1",
     "react-spinners": "0.10.4",
     "xml-js": "1.6.11"
