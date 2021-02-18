@@ -189,7 +189,10 @@ class App extends Component {
 
       http.onreadystatechange = function () {
         //Call a function when the state changes.
-        if (http.readyState === 4 && http.status === 200) {
+        if (
+          http.readyState === 4 &&
+          (http.status === 200 || http.status === 201)
+        ) {
           s3.putObject(params, function (err, data) {
             if (err) {
               alert("Errore nel caricamento del file");
