@@ -207,7 +207,10 @@ class App extends Component {
             }
           });
         } else {
-          if (http.status === 400 || http.status === 401) {
+          if (
+            http.readyState === 4 &&
+            (http.status === 400 || http.status === 401)
+          ) {
             alert("Errore nel caricamento del file: Controllare Barcode");
             console.log("Barcode errato");
             that._changeEnabled("enabled");
