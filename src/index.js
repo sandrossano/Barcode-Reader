@@ -158,46 +158,46 @@ class App extends Component {
         Body: buf
       };
 
-      s3.putObject(params, function (err, data) {
-        if (err) {
-          alert("Errore nel caricamento del file");
-          console.log(err);
-          that._changeEnabled("enabled");
-          // loaderHandler.hideLoader(); // Hide the loader
-          that.setState({ allegatiload: false });
-        } else {
-          var http = new XMLHttpRequest();
-          var url =
-            "https://cors-casillo-sap.herokuapp.com/https://sap.casillogroup.it/sap/opu/odata/sap/ZWEB_ALLEGATI_SRV/ddtAllegatiSet";
-          var body =
-            '<entry xml:base="/sap/opu/odata/sap/ZWEB_USERS_SRV/" xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" ' +
-            'xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">' +
-            ' <content type="application/xml">' +
-            "<m:properties>" +
-            "<d:LINK>https://repodoc.s3.eu-west-3.amazonaws.com/" +
-            myKey +
-            "</d:LINK>" +
-            "<d:NOME_ALLEGATO>" +
-            namedoc[1] +
-            "</d:NOME_ALLEGATO>" +
-            "<d:ESTENSIONE>JPG</d:ESTENSIONE>" +
-            "<d:CONSEGNA>" +
-            document.querySelector("#text-input").value +
-            "</d:CONSEGNA>" +
-            "</m:properties>" +
-            "</content>" +
-            "</entry>";
+      var http = new XMLHttpRequest();
+      var url =
+        "https://cors-casillo-sap.herokuapp.com/https://sap.casillogroup.it/sap/opu/odata/sap/ZWEB_ALLEGATI_SRV/ddtAllegatiSet";
+      var body =
+        '<entry xml:base="/sap/opu/odata/sap/ZWEB_USERS_SRV/" xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" ' +
+        'xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">' +
+        ' <content type="application/xml">' +
+        "<m:properties>" +
+        "<d:LINK>https://repodoc.s3.eu-west-3.amazonaws.com/" +
+        myKey +
+        "</d:LINK>" +
+        "<d:NOME_ALLEGATO>" +
+        namedoc[1] +
+        "</d:NOME_ALLEGATO>" +
+        "<d:ESTENSIONE>JPG</d:ESTENSIONE>" +
+        "<d:CONSEGNA>" +
+        document.querySelector("#text-input").value +
+        "</d:CONSEGNA>" +
+        "</m:properties>" +
+        "</content>" +
+        "</entry>";
 
-          http.open("POST", url, true);
+      http.open("POST", url, true);
 
-          //Send the proper header information along with the request
-          http.setRequestHeader("Content-type", "application/xml");
-          http.setRequestHeader("X-Requested-With", "X");
-          http.setRequestHeader("Authorization", "Basic c3NpaTpsaW1waW8=");
+      //Send the proper header information along with the request
+      http.setRequestHeader("Content-type", "application/xml");
+      http.setRequestHeader("X-Requested-With", "X");
+      http.setRequestHeader("Authorization", "Basic c3NpaTpsaW1waW8=");
 
-          http.onreadystatechange = function () {
-            //Call a function when the state changes.
-            if (http.readyState === 4 && http.status === 200) {
+      http.onreadystatechange = function () {
+        //Call a function when the state changes.
+        if (http.readyState === 4 && http.status === 200) {
+          s3.putObject(params, function (err, data) {
+            if (err) {
+              alert("Errore nel caricamento del file");
+              console.log(err);
+              that._changeEnabled("enabled");
+              // loaderHandler.hideLoader(); // Hide the loader
+              that.setState({ allegatiload: false });
+            } else {
               alert("File caricato con successo");
               console.log("Successfully uploaded data to repodoc/" + myKey);
               that._changeEnabled("enabled");
@@ -205,10 +205,18 @@ class App extends Component {
               that.setState({ allegatiload: false });
               menu.appendChild(that.createMenuItem(myKey));
             }
-          };
-          http.send(body);
+          });
+        } else {
+          if (http.status === 400 || http.status === 401) {
+            alert("Errore nel caricamento del file: Controllare Barcode");
+            console.log("Barcode errato");
+            that._changeEnabled("enabled");
+            // loaderHandler.hideLoader(); // Hide the loader
+            that.setState({ allegatiload: false });
+          }
         }
-      });
+      };
+      http.send(body);
     };
     reader.onerror = function (evt) {
       console.log("error reading file");
