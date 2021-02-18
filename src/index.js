@@ -213,6 +213,7 @@ class App extends Component {
             that._changeEnabled("enabled");
             // loaderHandler.hideLoader(); // Hide the loader
             that.setState({ allegatiload: false });
+            return;
           }
         }
       };
