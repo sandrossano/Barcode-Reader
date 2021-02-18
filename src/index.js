@@ -166,12 +166,47 @@ class App extends Component {
           // loaderHandler.hideLoader(); // Hide the loader
           that.setState({ allegatiload: false });
         } else {
-          alert("File caricato con successo");
-          console.log("Successfully uploaded data to repodoc/" + myKey);
-          that._changeEnabled("enabled");
-          // loaderHandler.hideLoader(); // Hide the loader
-          that.setState({ allegatiload: false });
-          menu.appendChild(that.createMenuItem(myKey));
+          var http = new XMLHttpRequest();
+          var url =
+            "https://cors-casillo-sap.herokuapp.com/https://sap.casillogroup.it/sap/opu/odata/sap/ZWEB_ALLEGATI_SRV/ddtAllegatiSet";
+          var body =
+            '<entry xml:base="/sap/opu/odata/sap/ZWEB_USERS_SRV/" xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" ' +
+            'xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">' +
+            ' <content type="application/xml">' +
+            "<m:properties>" +
+            "<d:LINK>https://repodoc.s3.eu-west-3.amazonaws.com/" +
+            myKey +
+            "</d:LINK>" +
+            "<d:NOME_ALLEGATO>" +
+            namedoc[1] +
+            "</d:NOME_ALLEGATO>" +
+            "<d:ESTENSIONE>JPG</d:ESTENSIONE>" +
+            "<d:CONSEGNA>" +
+            document.querySelector("#text-input").value +
+            "</d:CONSEGNA>" +
+            "</m:properties>" +
+            "</content>" +
+            "</entry>";
+
+          http.open("POST", url, true);
+
+          //Send the proper header information along with the request
+          http.setRequestHeader("Content-type", "application/xml");
+          http.setRequestHeader("X-Requested-With", "X");
+          http.setRequestHeader("Authorization", "Basic c3NpaTpsaW1waW8=");
+
+          http.onreadystatechange = function () {
+            //Call a function when the state changes.
+            if (http.readyState === 4 && http.status === 200) {
+              alert("File caricato con successo");
+              console.log("Successfully uploaded data to repodoc/" + myKey);
+              that._changeEnabled("enabled");
+              // loaderHandler.hideLoader(); // Hide the loader
+              that.setState({ allegatiload: false });
+              menu.appendChild(that.createMenuItem(myKey));
+            }
+          };
+          http.send(body);
         }
       });
     };
