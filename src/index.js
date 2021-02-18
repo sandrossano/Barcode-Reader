@@ -308,7 +308,7 @@ class App extends Component {
             <center>
               <span className={css.TestoTestata}>Allegati:</span>
 
-              <div style={{ marginTop: "5px" }}>
+              <div style={{ marginTop: "15px" }}>
                 <div className={css.card2}>
                   <p style={styleLeft}>
                     <img
