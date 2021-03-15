@@ -21,7 +21,6 @@ input[name="file"] {
   /*transition: 0.3s;*/
   background-color: rgba(81, 121, 173, 0.534);
 }
-
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -90,6 +89,7 @@ padding {
 .Label {
   width: 100px;
   margin-right: 30px !important;
+  font-family: "72";
 }
 .LabelFolder {
   width: 100px;
@@ -122,4 +122,8 @@ padding {
 .ButtonSubmit {
   background-color: transparent;
   border: 0;
+}
+
+label {
+  font-family: "72";
 }
