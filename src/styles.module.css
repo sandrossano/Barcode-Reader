@@ -19,7 +19,7 @@ input[name="file"] {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.76);
   /*transition: 0.3s;*/
-  background-color: rgba(81, 121, 173, 0.534);
+  background-color: rgb(179, 199, 255, 0.7);
 }
 /* On mouse-over, add a deeper shadow */
 .card:hover {
@@ -48,7 +48,7 @@ padding {
   border-radius: 2rem;
 }
 .button {
-  background-color: #200cce94; /* Green */
+  background-color: #5496cd; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -58,7 +58,7 @@ padding {
   font-size: 15px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
 }
 .button:disabled {
   opacity: 0.5;
@@ -75,15 +75,16 @@ padding {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.76);
   /*transition: 0.3s;*/
-  background-color: rgba(239, 255, 253, 0.637);
+  background-color: rgb(179, 255, 102, 0.25);
+  /*background-color: rgba(239, 255, 253, 0.637);*/
 }
 .TestoTestata {
-  font-family: cursive;
+  font-family: "72";
   padding-left: 20px;
   font-size: 1.5rem;
   font-weight: bold;
   /*text-decoration: underline;*/
-  color: black;
+  color: rgb(64, 64, 64);
 }
 
 .Label {
