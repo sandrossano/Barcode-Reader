@@ -15,7 +15,7 @@ input[name="file"] {
   margin-right: 20px;
   border-radius: 2rem;
   padding-bottom: 10px;
-  padding-top: 15px;
+  padding-top: 15px !important;
   margin-bottom: 20px;
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(37, 37, 37, 0.76);
