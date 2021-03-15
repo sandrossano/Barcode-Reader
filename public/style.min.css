@@ -9,6 +9,7 @@ body {
   margin-right: 20px;
   border-radius: 2rem;
   padding-bottom: 20px;
+  padding-top: 15px;
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.76);
   /*transition: 0.3s;*/
