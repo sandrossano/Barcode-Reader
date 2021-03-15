@@ -61,7 +61,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 0;
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
   font-weight: bold !important;
   text-align: center;
   font-family: "72fallback", "72", "72full", Arial, Helvetica, sans-serif;
