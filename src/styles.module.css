@@ -19,6 +19,8 @@ input[name="file"] {
   margin-bottom: 20px;
   /* Add shadows to create the "card" effect */
   box-shadow: 0px 1px 10px 3px rgb(37 37 37 / 76%);
+  max-width: 700px;
+  min-width: 300px;
   /*transition: 0.3s;*/
   background-color: rgba(187, 205, 255, 0.7);
 }
