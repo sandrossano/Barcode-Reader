@@ -18,7 +18,7 @@ input[name="file"] {
   color: black;
   text-align: center;
   height: 1.5em;
-  opacity: 0.5;
+  /*opacity: 0.5;*/
 }
 .hrText::before {
   content: "";
@@ -39,7 +39,7 @@ input[name="file"] {
   line-height: 1.5em;
 
   color: #818078;
-  background-color: transparent;
+  background-color: rgba(187, 205, 255, 0.7);
 }
 
 .card {
