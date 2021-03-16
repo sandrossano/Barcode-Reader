@@ -39,7 +39,7 @@ input[name="file"] {
   line-height: 1.5em;
 
   color: #818078;
-  background-color: #fcfcfa;
+  background-color: transparent;
 }
 
 .card {

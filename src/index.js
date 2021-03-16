@@ -303,12 +303,20 @@ class App extends Component {
             </div>
             <br />
             <hr className={css.hrText} data-content="OR" />
-            <label>Barcode: </label>
-            <input
-              type="number"
-              id="text-input"
-              style={{ marginTop: "20px", marginBottom: "15px" }}
-            />
+            <p style={style}>
+              <label>Barcode: </label>
+              <img
+                className={css.ImageLabel}
+                width="40px"
+                alt="Icona Barcode"
+                src="barcode.ico"
+              />
+              <input
+                type="number"
+                id="text-input"
+                style={{ marginTop: "20px", marginBottom: "15px" }}
+              />
+            </p>
           </div>
 
           <ButtonLoader />
