@@ -10,6 +10,17 @@ input[name="file"] {
   width: 80%;
   max-width: 300px;
 }
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+}
+
 .card {
   margin-left: 20px;
   margin-right: 20px;

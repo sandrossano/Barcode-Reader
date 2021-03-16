@@ -259,7 +259,7 @@ class App extends Component {
           <br />
           <br />
           <div style={{ marginTop: "5px" }}>
-            <div className={css.card2}>
+            <div>
               <p style={style}>
                 <span className={css.Label}>Da Fotocamera</span>
                 <img
@@ -282,7 +282,16 @@ class App extends Component {
                   <Scanner onDetected={this._onDetected} />
                 ) : null}
               </div>
-              <span className={css.Label}>Da Libreria</span>
+              <hr class="hr-text" data-content="OR" />
+              <p style={style}>
+                <span className={css.Label}>Da Libreria</span>
+                <img
+                  className={css.ImageLabel}
+                  width="40px"
+                  alt="Icona Cam"
+                  src="fotocam.ico"
+                />
+              </p>
               <input
                 id="inputId"
                 name="file"
@@ -293,6 +302,7 @@ class App extends Component {
               <br />
             </div>
             <br />
+            <hr class="hr-text" data-content="OR" />
             <label>Barcode: </label>
             <input
               type="number"
