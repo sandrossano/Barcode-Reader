@@ -304,7 +304,7 @@ class App extends Component {
             <br />
             <hr className={css.hrText} data-content="OR" />
             <p style={style}>
-              <label>Barcode: </label>
+              <span className={css.Label}>Barcode</span>
               <img
                 className={css.ImageLabel}
                 width="40px"

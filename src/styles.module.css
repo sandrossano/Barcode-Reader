@@ -39,7 +39,8 @@ input[name="file"] {
   line-height: 1.5em;
 
   color: #818078;
-  background-color: rgba(187, 205, 255, 0.7);
+  background-color: rgb(207 220 255);
+  border-radius: 25px;
 }
 
 .card {
