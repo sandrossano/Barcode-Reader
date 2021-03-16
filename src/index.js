@@ -312,12 +312,7 @@ class App extends Component {
                 src="barcode.ico"
               />
             </p>
-            <input
-              type="number"
-              id="text-input"
-              placeholder="Barcode"
-              className={css.inputBarcode}
-            />
+            <input type="number" id="text-input" className={css.inputBarcode} />
           </div>
 
           <ButtonLoader />
