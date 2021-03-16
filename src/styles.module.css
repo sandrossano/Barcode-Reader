@@ -42,7 +42,16 @@ input[name="file"] {
   background-color: rgb(207 220 255);
   border-radius: 25px;
 }
-
+.inputBarcode {
+  margin-bottom: 15px;
+  border: 2px solid darkblue;
+  border-radius: 10px;
+  height: 25px;
+  font-family: "72";
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+}
 .card {
   margin-left: 20px;
   margin-right: 20px;

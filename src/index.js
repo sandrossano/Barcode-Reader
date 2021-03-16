@@ -307,16 +307,17 @@ class App extends Component {
               <span className={css.Label}>Barcode</span>
               <img
                 className={css.ImageLabel}
-                width="40px"
+                width="50px"
                 alt="Icona Barcode"
                 src="barcode.ico"
               />
-              <input
-                type="number"
-                id="text-input"
-                style={{ marginTop: "20px", marginBottom: "15px" }}
-              />
             </p>
+            <input
+              type="number"
+              id="text-input"
+              placeholder="Barcode"
+              className={css.inputBarcode}
+            />
           </div>
 
           <ButtonLoader />
