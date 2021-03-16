@@ -268,10 +268,11 @@ class App extends Component {
                   alt="Icona Cam"
                   src="fotocam.ico"
                 />
-                <button onClick={this._scan} className={css.button}>
-                  {this.state.scanning ? "Chiudi" : "Apri"}
-                </button>
               </p>
+              <button onClick={this._scan} className={css.button}>
+                {this.state.scanning ? "Chiudi" : "Apri"}
+              </button>
+
               <ul className="results">
                 {this.state.results.map((result, i) => (
                   <Result key={result.codeResult.code + i} result={result} />
@@ -304,7 +305,7 @@ class App extends Component {
             <br />
             <hr className={css.hrText} data-content="OR" />
             <p style={style}>
-              <span className={css.Label}>Barcode</span>
+              <span className={css.Label}>Manualmente</span>
               <img
                 className={css.ImageLabel}
                 width="50px"
