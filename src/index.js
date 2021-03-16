@@ -261,7 +261,7 @@ class App extends Component {
           <div style={{ marginTop: "5px" }}>
             <div>
               <p style={style}>
-                <span className={css.Label}>Da Fotocamera</span>
+                <span className={css.Label}>Da Foto</span>
                 <img
                   className={css.ImageLabel}
                   width="40px"
@@ -283,9 +283,9 @@ class App extends Component {
                   <Scanner onDetected={this._onDetected} />
                 ) : null}
               </div>
-              <hr className={css.hrText} data-content="OR" />
+              <hr className={css.hrText} data-content="OPPURE" />
               <p style={style}>
-                <span className={css.Label}>Da Libreria</span>
+                <span className={css.Label}>Da File</span>
                 <img
                   className={css.ImageLabel}
                   width="40px"
@@ -303,7 +303,7 @@ class App extends Component {
               <br />
             </div>
             <br />
-            <hr className={css.hrText} data-content="OR" />
+            <hr className={css.hrText} data-content="OPPURE" />
             <p style={style}>
               <span className={css.Label}>Manualmente</span>
               <img
@@ -313,7 +313,12 @@ class App extends Component {
                 src="barcode.ico"
               />
             </p>
-            <input type="number" id="text-input" className={css.inputBarcode} />
+            <input
+              type="number"
+              placeholder="0123456789"
+              id="text-input"
+              className={css.inputBarcode}
+            />
           </div>
 
           <ButtonLoader />
