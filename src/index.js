@@ -249,7 +249,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div align="center">
         <div
           className={css.card}
           align="center"
