@@ -10,7 +10,7 @@ input[name="file"] {
   width: 80%;
   max-width: 300px;
 }
-.hr-text {
+.hrText {
   line-height: 1em;
   position: relative;
   outline: 0;
@@ -20,7 +20,7 @@ input[name="file"] {
   height: 1.5em;
   opacity: 0.5;
 }
-.hr-text::before {
+.hrText::before {
   content: "";
   background: linear-gradient(to right, transparent, #818078, transparent);
   position: absolute;
@@ -29,7 +29,7 @@ input[name="file"] {
   width: 100%;
   height: 1px;
 }
-.hr-text::after {
+.hrText::after {
   content: attr(data-content);
   position: relative;
   display: inline-block;

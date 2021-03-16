@@ -282,7 +282,7 @@ class App extends Component {
                   <Scanner onDetected={this._onDetected} />
                 ) : null}
               </div>
-              <hr class="hr-text" data-content="OR" />
+              <hr className={css.hrText} data-content="OR" />
               <p style={style}>
                 <span className={css.Label}>Da Libreria</span>
                 <img
@@ -302,7 +302,7 @@ class App extends Component {
               <br />
             </div>
             <br />
-            <hr class="hr-text" data-content="OR" />
+            <hr className={css.hrText} data-content="OR" />
             <label>Barcode: </label>
             <input
               type="number"
